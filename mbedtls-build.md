@@ -40,7 +40,7 @@ sudo install -m 644  inc/ctoken/ctoken* /usr/local/include/ctoken
 sudo install -m 644 libctoken.a /usr/local/lib
 ```
 
-## Build Hannes's mbedTLS
+## Build modified mbedTLS
 
 ```
 git clone https://github.com/hannestschofenig/mbedtls
