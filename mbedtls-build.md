@@ -32,7 +32,7 @@ cd ctoken
 env CRYPTO_LIB=/opt/homebrew/lib/libmbedcrypto.a CRYPTO_INC="-I /opt/homebrew/include" make -f Makefile.psa -e
 ```
 
-Oddly, there is no `install` target in ctoken.  A bit of DIY is needed:
+Oddly, there is no `install` target in ctoken. A bit of DIY is needed:
 
 ```sh
 sudo mkdir -p /usr/local/include/ctoken
