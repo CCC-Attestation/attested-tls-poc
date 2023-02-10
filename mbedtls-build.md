@@ -48,3 +48,20 @@ cd mbedtls
 git checkout tls-attestation
 make CFLAGS="-DCTOKEN_LABEL_CNF=8 -DCTOKEN_TEMP_LABEL_KAK_PUB=2500" LDFLAGS="-lqcbor -lctoken -lt_cose"
 ```
+
+## Running the EAT example
+
+```bash
+cd programs/ssl
+```
+
+* Server side:
+
+```bash
+./ssl_server2 attestation_callback=1 force_version=tls13 auth_mode=required
+```
+* Client side:
+
+```bash
+./ssl_client2 client_att_type=eat
+```
