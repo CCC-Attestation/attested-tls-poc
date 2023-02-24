@@ -1,8 +1,8 @@
-How to synthesise attestation results produced by Veraison
+# How to synthesise attestation results produced by Veraison
 
-# Prerequisite
+## Prerequisite
 
-## Step CLI
+### Step CLI
 
 The [`step` CLI](https://smallstep.com/cli/) has an awesome `crypto jwt` subcommand to deal with JWTs (of which EAR is an instance).
 
@@ -10,7 +10,7 @@ See [installation instructions](https://smallstep.com/docs/step-cli/installation
 
 (TL;DR -- On MacOSX, do `brew install step`.)
 
-## Obtain the `veraison/ear` examples
+### Obtain the `veraison/ear` examples
 
 * clone veraison EAR repo
 ```sh
@@ -22,7 +22,7 @@ git clone github.com/veraison/ear
 cd ear/arc/data
 ```
 
-# Create (and verify) a "successful" EAR 
+## Create (and verify) a "successful" EAR
 
 * create:
 ```sh
@@ -36,7 +36,7 @@ cat ear-ok.jwt | step crypto jwt verify --key=pkey.json --subtle
 
 Note the presence of the `"ear.veraison.key-attestation"` claim.
 
-# Create (and verify) an "unsuccessful" EAR 
+## Create (and verify) an "unsuccessful" EAR
 
 * create:
 ```sh
