@@ -50,7 +50,7 @@ Endorsements for a Veraison-based verifier are provided in a CoRIM format. In ou
 
 - `uuid` (String): A random UUID that will identify the endorsement.
 - `class` (String): The class of devices to which this platform belongs. This will link the platform with reference PCR values, which are provided in a separate endorsement document.
-- `key_id`: (String) A fingerprint of the public part of the cryptographic key which will be used as the identity key of the platform.
+- `key_id`: (String) A base64-encoded UEID fingerprint of the public part of the cryptographic key which will be used as the identity key of the platform.
 - `key` (String): The BASE64 encoding of the Subject Public Key Info of the identity key of the platform identified by `key_id`.
 
 ## TPM platform class endorsement format
