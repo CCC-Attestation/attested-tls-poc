@@ -14,7 +14,7 @@ See [installation instructions](https://smallstep.com/docs/step-cli/installation
 
 * Clone Veraison's EAR repo:
 ```sh
-git clone github.com/veraison/ear
+git clone https://github.com/veraison/ear
 ```
 
 * Go to the "example claims-sets" folder:
