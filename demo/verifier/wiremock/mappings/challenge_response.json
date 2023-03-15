@@ -1,0 +1,28 @@
+{
+    "request": {
+        "method": "POST",
+        "urlPath": "/challenge-response/v1/session/12345678"
+    },
+    "response": {
+        "status": 200,
+        "headers": {
+            "Content-Type": "application/vnd.veraison.challenge-response-session+json"
+        },
+        "jsonBody": {
+            "nonce": "MDEyMzQ1Njc=",
+            "expiry": "2030-10-12T07:20:50.52Z",
+            "accept": [
+                "application/psa-attestation-token",
+                "application/vnd.1",
+                "application/vnd.2",
+                "application/vnd.3"
+            ],
+            "status": "complete",
+            "evidence": {
+                "type": "application/psa-attestation-token",
+                "value": "MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI="
+            },
+            "result": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJlYXIucmF3LWV2aWRlbmNlIjoiTnpRM01qWTVOek0yTlRZek56UUsiLCJlYXIudmVyaWZpZXItaWQiOnsiYnVpbGQiOiJ2dHMgMC4wLjEiLCJkZXZlbG9wZXIiOiJodHRwczovL3ZlcmFpc29uLXByb2plY3Qub3JnIn0sImVhdF9wcm9maWxlIjoidGFnOmdpdGh1Yi5jb20sMjAyMzp2ZXJhaXNvbi9lYXIiLCJpYXQiOjEuNjY2NTI5MTg0ZSswOSwianRpIjoiMzhkZWI4NmI4NzRkZmRmNDU3YWY1OWUwMWZjZjM3ZTdhYjMwMGNlMTUxZjNkMTlhOTE5OWMyMzI4MjQxMTlmZiIsIm5iZiI6MTY3ODcxOTIzMiwic3VibW9kcyI6eyJQQVJTRUNfVFBNIjp7ImVhci5hcHByYWlzYWwtcG9saWN5LWlkIjoicG9saWN5Oi8vcGFyc2VjLzYwYTAwNjhkIiwiZWFyLnN0YXR1cyI6ImFmZmlybWluZyIsImVhci50cnVzdHdvcnRoaW5lc3MtdmVjdG9yIjp7ImV4ZWN1dGFibGVzIjoyLCJoYXJkd2FyZSI6MiwiaW5zdGFuY2UtaWRlbnRpdHkiOjJ9LCJlYXIudmVyYWlzb24ua2V5LWF0dGVzdGF0aW9uIjp7ImFrcHViIjoiTUZrd0V3WUhLb1pJemowQ0FRWUlLb1pJemowREFRY0RRZ0FFZDNKbGI0RkxPWko1MWVIeGVCLXNid21hUEZ5aHNPTlRVWU5MQ0xaZUMxY2xrTTJ2ajNhVFlienpTc19CSGw0SFRvUW12ZDRFdm01bE9VVkVsaGZlUlEifX19fQ.55BUrxOUO-fu5lvDXiXyhFTsf3qNES66YZMxvx30ynS7Kjzp_h3ARngIew1QZPsdHDC-HowxSO617Jr_S5au0A"
+        }
+    }
+}

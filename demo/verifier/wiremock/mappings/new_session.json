@@ -1,0 +1,24 @@
+{
+    "request": {
+        "method": "POST",
+        "urlPath": "/challenge-response/v1/newSession"
+    },
+    "response": {
+        "status": 201,
+        "headers": {
+            "Content-Type": "application/vnd.veraison.challenge-response-session+json",
+            "Location": "http://{{request.host}}:{{request.port}}/challenge-response/v1/session/12345678"
+        },
+        "jsonBody": {
+            "nonce": "MDEyMzQ1Njc=",
+            "expiry": "2030-10-12T07:20:50.52Z",
+            "accept": [
+                "application/psa-attestation-token",
+                "application/vnd.1",
+                "application/vnd.2",
+                "application/vnd.3"
+            ],
+            "status": "waiting"
+        }
+    }
+}
