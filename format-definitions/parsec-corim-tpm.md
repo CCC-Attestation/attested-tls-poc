@@ -6,12 +6,12 @@ The endorsement will allow the Veraison-based verifier to trust and verify attes
 
 ## TPM key endorsement format
 
-Endorsements for a Veraison-based verifier are provided in a CoRIM format. In our use-case, the endorsements for platform identity keys are JSON encoded using the template below.
+Endorsements for a Veraison-based verifier are provided in a CoRIM format. In our use-case, the endorsements for platform identity keys are JSON encoded as shown in the example below.
 
 ```json
 {
     "tag-identity": {
-            "id": uuid // example: uuid = "00000000-0000-0000-0000-000000000000"
+            "id": "E194FE9E-8E76-45C3-84F2-7923E7BFE1AE"
         },
     "entities": [
         {
@@ -29,17 +29,19 @@ Endorsements for a Veraison-based verifier are provided in a CoRIM format. In ou
             {
                 "environment": {
                     "class": {
+                      "id": {
                         "type": "uuid",
-                        "value": class // example: class = "ffffffff-ffff-ffff-ffff-ffffffffffff"
+                        "value": "96E16ABC-39B1-42BA-9FBF-2336657F5D76"
+                      }
                     },
                     "instance": {
                         "type": "ueid",
-                        "value": key_id, // example: key_id = "f05eae32-0003-4a82-8cfa-3780ea7817a0"
+                        "value": "ASUILRBQqkJrl7AXDc4RbQ7RFyg2+NZNWIZ0F2W1np91"
                     }
                 },
                 "verification-keys": [
                     {
-                        "key": key, // example: key = "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAETKRFE_RwSXooI8DdatPOYg_uiKm2XrtT_uEMEvqQZrwJHHcfw0c3WVzGoqL3Y_Q6xkHFfdUVqS2WWkPdKO03uw=="
+                        "key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAETKRFE_RwSXooI8DdatPOYg_uiKm2XrtT_uEMEvqQZrwJHHcfw0c3WVzGoqL3Y_Q6xkHFfdUVqS2WWkPdKO03uw=="
                     }
                 ]
             }
@@ -48,19 +50,14 @@ Endorsements for a Veraison-based verifier are provided in a CoRIM format. In ou
 }
 ```
 
-- `uuid` (String): A random UUID that will identify the endorsement.
-- `class` (String): The class of devices to which this platform belongs. This will link the platform with reference PCR values, which are provided in a separate endorsement document.
-- `key_id`: (String) A base64-encoded UEID fingerprint of the public part of the cryptographic key which will be used as the identity key of the platform.
-- `key` (String): The BASE64 encoding of the Subject Public Key Info of the identity key of the platform identified by `key_id`.
-
 ## TPM platform class endorsement format
 
-Endorsements for a Veraison-based verifier are provided in a CoRIM format. In our use-case, the endorsements for platform measurements for a given device class are JSON encoded using the template below.
+Endorsements for a Veraison-based verifier are provided in a CoRIM format. In our use-case, the endorsements for platform measurements for a given device class are JSON encoded as shown in the example below.
 
 ```json
 {
   "tag-identity": {
-    "id": uuid // example: uuid = "00000000-0000-0000-0000-000000000000"
+    "id": "B397E0BA-1B0B-4F24-AFCA-0CF4F4167ED0"
   },
   "entities": [
     {
@@ -78,31 +75,36 @@ Endorsements for a Veraison-based verifier are provided in a CoRIM format. In ou
       {
         "environment": {
           "class": {
-            "type": "uuid",
-            "value": class // example: class = "ffffffff-ffff-ffff-ffff-ffffffffffff"
+            "id": {
+              "type": "uuid",
+              "value": "96E16ABC-39B1-42BA-9FBF-2336657F5D76"
+            }
+            
           }
         },
         "measurements": [
           {
             "key": {
               "type": "uint",
-              "value": pcr[0]['index'] // example: pcr[0]['index'] = 0
+              "value": 0
             },
             "value": {
-              "digests": pcr[0]['reference-values']
-                // example: pcr[0]['reference-values'] = [
-                // "sha-256:h0KPxSKAPTEGXnvOPPA/5HUJZjHl4Hu9eg/eYMTPJcc=",
-                // "sha-384:QoS1aUymwNLPR4mguVrIAlyBjeUjBDZL580pgbLS7caFsyInfsJYGZYkE9jJssH1"
-                //   ]
+              "digests": [
+                  "sha-256:h0KPxSKAPTEGXnvOPPA/5HUJZjHl4Hu9eg/eYMTPJcc=",
+                  "sha-384:QoS1aUymwNLPR4mguVrIAlyBjeUjBDZL580pgbLS7caFsyInfsJYGZYkE9jJssH1"
+                ]
             }
           },
           {
             "key": {
               "type": "uint",
-              "value": pcr[1]['index']
+              "value": 1
             },
             "value": {
-              "digests": pcr[1]['reference-values']
+              "digests": [
+                "sha-256:+Fa5VtRzrPOmLEE7Azg3LzqyZf/GttRony4d99U1N4E=",
+                "sha-384:opRHhgSPFrfbRdR/erchTOvz6yY40HCz7JvIvrktiI2qVPyeF87oK3uOOpNC+2ly"
+              ]
             }
           }
         ]
@@ -111,9 +113,3 @@ Endorsements for a Veraison-based verifier are provided in a CoRIM format. In ou
   }
 }
 ```
-
-- `uuid` (String): A random UUID that will identify the endorsement.
-- `class` (String): The class of devices that this endorsement describes. This identifier can then be used in per-platform endorsements to succintly define the expected platform state.
-- `pcr`: An array of PCR descriptions covering each PCR index and reference values for at least one hashing algorithm.
-    - `pcr[n]['index']` (int): The PCR index for the n'th PCR included in this endorsement.
-    - `pcr[n]['reference-values']` (Array[String]): An array of reference values for the n'th PCR included in this endorsement, encoding the hash algorithm and the digest result for that algorithm, formatted as `hash_alg:digest`. Example: `sha-256:h0KPxSKAPTEGXnvOPPA/5HUJZjHl4Hu9eg/eYMTPJcc=`
