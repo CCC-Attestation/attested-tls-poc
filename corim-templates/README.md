@@ -6,7 +6,7 @@
 go install github.com/veraison/corim/cocli@latest 
 ```
 
-* Make a home for the CoMID intermediates:
+* Create a folder to stash the CoMID intermediates:
 
 ```shell
 mkdir out
