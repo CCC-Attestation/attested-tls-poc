@@ -13,7 +13,8 @@
                 "crv": "P-256",
                 "kty": "EC",
                 "x": "usWxHK2PmfnHKwXPS54m0kTcGJ90UiglWiGahtagnv8",
-                "y": "IBOL-C3BttVivg-lSreASjpkttcsz-1rb7btKLv8EX4"
+                "y": "IBOL-C3BttVivg-lSreASjpkttcsz-1rb7btKLv8EX4",
+                "alg": "ES256"
             },
             "media-types": [
                 "application/eat-cwt; profile=http://arm.com/psa/2.0.0",
