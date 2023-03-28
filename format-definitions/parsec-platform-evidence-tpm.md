@@ -66,7 +66,7 @@ The steps for verifying the attestation:
    defined above and perform CBOR decoding on it to extract the contained
    fields.
 - Verify that `alg` describes a valid, accepted signing algorithm.
-- Verify the `sig` is a valid signature over `certInfo` using the key identified
+- Verify the `sig` is a valid signature over `attestInfo` using the key identified
    by `kid`, with the algorithm specified in `alg`.
 - Verify that `aikCert` meets the requirements in § 8.3.1 TPM Attestation
    Statement Certificate Requirements.
