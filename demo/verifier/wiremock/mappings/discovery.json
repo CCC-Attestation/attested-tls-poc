@@ -23,7 +23,11 @@
                 "application/eat-collection; profile=http://arm.com/CCA-SSD/1.0.0",
                 "application/psa-attestation-token"
             ],
-            "version": "commit-cb11fa0"
+            "version": "commit-cb11fa0",
+            "state": "READY",
+            "api-endpoints": {
+                "newChallengeResponseSession": "/challenge-response/v1/newSession"
+            }
         }
     }
 }
