@@ -24,7 +24,7 @@
                 "application/psa-attestation-token"
             ],
             "version": "commit-cb11fa0",
-            "state": "READY",
+            "service-state": "READY",
             "api-endpoints": {
                 "newChallengeResponseSession": "/challenge-response/v1/newSession"
             }
