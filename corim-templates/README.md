@@ -34,6 +34,6 @@ cocli corim create -t corim.json -M out -o corim-parsec-tpm.cbor
 
 ```shell
 cocli corim submit -f corim-parsec-tpm.cbor \
-                   -s "https://veraison.example/endorsement-provisioning/v1/submit" \
-                   -m "application/corim-unsigned+cbor; profile=tag:github.com/parallaxsecond,2023-03-03:tpm"
+                   -s 'https://veraison.example/endorsement-provisioning/v1/submit' \
+                   -m 'application/corim-unsigned+cbor; profile="tag:github.com/parallaxsecond,2023-03-03:tpm"'
 ```
