@@ -17,7 +17,6 @@ CDDL representation of Parsec TPM Key Attestation Statement Format:
 ```
 parsecTpmKeyStmtFormat = {
                  tpmVer: "2.0",
-                 alg: COSEAlgorithmIdentifier,
                  kid: bytes,
                  sig: bytes,
                  certInfo: bytes,
@@ -27,8 +26,6 @@ parsecTpmKeyStmtFormat = {
 
 - `tpmVer`: The version of the TPM specification to which the signature
    conforms.
-- `alg`: A COSEAlgorithmIdentifier containing the identifier of the algorithm
-   used to generate the attestation signature.
 - `kid`: A UEID identifier that is shared between attester and verifier to
    uniquely identify the AIK (for example, a thumbprint of the public part of
    the attesting key used to produce `sig`).
@@ -59,8 +56,11 @@ verification procedure is as follows:
 
 - Verify that `attStmt` is valid CBOR conforming to the syntax defined above and
    perform CBOR decoding on it to extract the contained fields.
+- Verify that `kid` identifies an endorsed key.
+- Verify that the signing algorithm defined in `sig` is consistent with the key
+   identified by `kid`.
 - Verify the `sig` is a valid signature over `certInfo` using the key identified
-   by `kid`, with the algorithm specified in `alg`.
+   by `kid`.
 - Validate that `certInfo` is valid:
    - Verify that `magic` is set to TPM_GENERATED_VALUE.
    - Verify that `type` is set to TPM_ST_ATTEST_CERTIFY.

@@ -19,7 +19,6 @@ scheme is straight-forward.
 ```
 parsecTpmPlatStmtFormat = {
                  tpmVer: "2.0",
-                 alg: COSEAlgorithmIdentifier,
                  kid: bytes,
                  sig: bytes,
                  attestInfo: bytes,
@@ -28,8 +27,6 @@ parsecTpmPlatStmtFormat = {
 
 - `tpmVer`: The version of the TPM specification to which the signature
    conforms.
-- `alg`: A COSEAlgorithmIdentifier containing the identifier of the algorithm
-   used to generate the attestation signature.
 - `kid`: A UEID identifier that is shared between attester and verifier to
    uniquely identify the AIK (for example, a thumbprint of the public part of
    the key).
@@ -65,11 +62,11 @@ The steps for verifying the attestation:
 - Verify that the attestation token is valid CBOR conforming to the syntax
    defined above and perform CBOR decoding on it to extract the contained
    fields.
-- Verify that `alg` describes a valid, accepted signing algorithm.
-- Verify the `sig` is a valid signature over `attestInfo` using the key identified
-   by `kid`, with the algorithm specified in `alg`.
-- Verify that `aikCert` meets the requirements in § 8.3.1 TPM Attestation
-   Statement Certificate Requirements.
+- Verify that `kid` identifies an endorsed key.
+- Verify that the signing algorithm defined in `sig` is consistent with the key
+   identified by `kid`.
+- Verify the `sig` is a valid signature over `certInfo` using the key identified
+   by `kid`.
 - Verify that `attestInfo` is valid:
    - Verify that `magic` is set to TPM_GENERATED_VALUE.
    - Verify that `type` is set to TPM_ST_ATTEST_QUOTE.
@@ -81,12 +78,12 @@ The steps for verifying the attestation:
    - Verify that the platform UUID obtained earlier is valid and represents a
       platform found in the database.
    - Retrieve the reference values defined for this platform. Compute the digest
-      of the concatenation of all relevant PCRs using the hash algorithm defined
-      in `alg`. The PCRs are concatenated as described in "Selecting Multiple
-      PCR", section 17.5 of [TPMv2
+      of the concatenation of all relevant PCRs using the hash algorithm used
+      when generating `sig`. The PCRs are concatenated as described in
+      "Selecting Multiple PCR", section 17.5 of [TPMv2
       Part1](https://trustedcomputinggroup.org/wp-content/uploads/TCG_TPM2_r1p59_Part1_Architecture_pub.pdf).
       Verify that this digest is equal to `pcrDigest` in `attested` and that the
-      hash algorithm defined in `pcrSelect` is aligned with the one in `alg`.
+      hash algorithm defined in `pcrSelect` is aligned with the one in `sig`.
    - Note that the remaining fields in the "Standard Attestation Structure"
       [TPMv2-Part1] section 31.2, i.e., `qualifiedSigner`, `clockInfo` and
       `firmwareVersion` are ignored. These fields MAY be used as an input to
