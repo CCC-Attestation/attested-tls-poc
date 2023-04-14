@@ -72,9 +72,7 @@ The steps for verifying the attestation:
    - Verify that `type` is set to TPM_ST_ATTEST_QUOTE.
    - Verify that `attested` contains a TPMS_QUOTE_INFO structure as specified in
       [TPMv2-Part2] section 10.12.4.
-   - Extract `extraData` and parse it assuming the format defined above to
-      obtain platform UUID and `relyingPartyNonce`. Verify that
-      `relyingPartyNonce` is correct.
+   - Verify that `extraData` is set to `relyingPartyNonce`.
    - Verify that the platform UUID obtained earlier is valid and represents a
       platform found in the database.
    - Retrieve the reference values defined for this platform. Compute the digest
