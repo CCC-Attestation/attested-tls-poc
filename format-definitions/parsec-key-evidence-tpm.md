@@ -51,11 +51,12 @@ TPMS_ATTEST.
 
 ## Verification procedure
 
-Given the verification procedure inputs `attStmt` and `relyingPartyNonce`, the
-verification procedure is as follows:
+Given the verification procedure inputs `parsecTpmKeyStmtFormat` and
+`relyingPartyNonce`, the verification procedure is as follows:
 
-- Verify that `attStmt` is valid CBOR conforming to the syntax defined above and
-   perform CBOR decoding on it to extract the contained fields.
+- Verify that `parsecTpmKeyStmtFormat` is valid CBOR conforming to the syntax
+   defined above and perform CBOR decoding on it to extract the contained
+   fields.
 - Verify that `kid` identifies an endorsed key.
 - Verify that the signing algorithm defined in `sig` is consistent with the key
    identified by `kid`.
