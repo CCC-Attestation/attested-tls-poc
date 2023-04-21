@@ -77,6 +77,12 @@ Given the verification procedure inputs `parsecTpmKeyStmtFormat` and
       Part1](https://trustedcomputinggroup.org/wp-content/uploads/TCG_TPM2_r1p59_Part1_Architecture_pub.pdf)
       section 31.2, i.e., `qualifiedSigner`, `clockInfo` and `firmwareVersion`
       are ignored. These fields MAY be used as an input to risk engines.
+- Perform the policy-dictated checks relating to the state of the identity key
+   using `pubArea`. These checks could include, for example:
+   - Verifying that the key was not imported by checking that the
+      `sensitiveDataOrigin` field is set in `objectAttributes`.
+   - Verifying that the key cannot be exported by checking that the `fixedTPM`
+      field is set in `objectAttributes`.
 - If successful, return the identity endorsed through `kid`.
 
 **Note**: The above steps only serve as verification for the key attestation
