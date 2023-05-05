@@ -26,9 +26,9 @@ definition of `parsecTpmPlatStmtFormat` can be found in
 
 The CAB produced by Parsec is then encapsulated in a [Conceptual Message
 Wrapper](https://datatracker.ietf.org/doc/draft-ftbs-rats-msg-wrap/), which is
-simply a CBOR-encoded array with the first value identifying the type of the
-second value. In this specific case, the type is represented by the string
-`application/vnd.parallaxsecond.key-attestation.tpm`, a media type string: 
+simply a CBOR-encoded array with the first element identifying the type of the
+second element. In this specific case, the type is represented by the string
+`application/vnd.parallaxsecond.key-attestation.tpm`, a media type string:
 
 ```
 [
