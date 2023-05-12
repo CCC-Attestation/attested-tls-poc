@@ -54,8 +54,9 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH="/root/.cargo/bin:/opt/rust/bin:${PATH}"
 
 # Install Parsec service
-RUN git clone -b attested-tls https://github.com/ionut-arm/parsec.git
-RUN cd parsec \
+RUN git clone -b attested-tls https://github.com/ionut-arm/parsec.git \
+	&& cd parsec \
+	&& git checkout dc561a5e4dee998ded29c7bd3310429341ddf237 \
 	&& cargo build --release --features=tpm-provider \
 	&& cp ./target/release/parsec /usr/bin/
 RUN mkdir /etc/parsec/
@@ -111,7 +112,7 @@ RUN cd mbedtls \
 	&& git fetch ionut parsec-attestation  \
 	&& git checkout parsec-attestation \
 	&& make CFLAGS="-DCTOKEN_LABEL_CNF=8 -DCTOKEN_TEMP_LABEL_KAK_PUB=2500" LDFLAGS="-lctoken -lt_cose -lqcbor -lm -lparsec_se_driver -lpthread -ldl" \
-	&& install -m 644 programs/ssl/ssl_client2 /usr/local/bin
+	&& install -m 755 programs/ssl/ssl_client2 /usr/local/bin
 
 # Install Parsec tool
 RUN git clone -b attested-tls https://github.com/ionut-arm/parsec-tool.git \
@@ -127,8 +128,9 @@ ENV PATH $PATH:/usr/local/go/bin:/root/go/bin
 # Install cocli
 RUN go install github.com/veraison/corim/cocli@latest
 
-# Introduce endorsement script
+# Introduce scripts
 COPY endorse.sh /root/
+COPY attest.sh /root/
 
 # Introduced platform endorsement templates
 COPY comid-pcr.json /root/
