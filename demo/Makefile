@@ -23,7 +23,7 @@ endif
 
 $(foreach node,$(NODES),$(eval $(call logs,$(node))))
 
-start:
+start: veraison-build-containers
 	$(DC) up -d $(BUILD_FLAGS)
 
 stop:
