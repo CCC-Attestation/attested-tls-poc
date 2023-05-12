@@ -82,6 +82,8 @@ RUN cd mbedtls \
 	&& git fetch paulh ph-tls-attestation  \
 	&& git checkout ph-tls-attestation \
 	&& make CFLAGS="-DCTOKEN_LABEL_CNF=8 -DCTOKEN_TEMP_LABEL_KAK_PUB=2500" LDFLAGS="-lctoken -lt_cose -lqcbor -lveraison_apiclient_ffi -lear -ljwt -ljansson -lm -lssl -lcrypto -lgcc_s -lutil -lrt -lpthread -ldl -lc" \
-	&& install -m 644 programs/ssl/ssl_server2 /usr/local/bin
+	&& install -m 755 programs/ssl/ssl_server2 /usr/local/bin
 
 WORKDIR /root/
+
+CMD ssl_server2 attestation_callback=1 force_version=tls13 auth_mode=required server_port=4433 veraison_endpoint="http://verification-service.veraison-net:8080"
