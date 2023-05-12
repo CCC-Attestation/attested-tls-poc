@@ -86,4 +86,4 @@ RUN cd mbedtls \
 
 WORKDIR /root/
 
-CMD ssl_server2 attestation_callback=1 force_version=tls13 auth_mode=required server_port=4433 veraison_endpoint="http://verification-service.veraison-net:8080"
+CMD ssl_server2 attestation_callback=1 force_version=tls13 auth_mode=required server_port=4433 veraison_endpoint="http://vfe:8080"
