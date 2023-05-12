@@ -1,0 +1,66 @@
+version: "3.9"
+
+services:
+  vts:
+    image: "veraison/vts"
+    volumes:
+      - ./logs:/opt/veraison/logs
+    networks:
+      veraison:
+    container_name: vts
+
+  vfe:
+    image: "veraison/verification"
+    volumes:
+      - ./logs:/opt/veraison/logs
+    networks:
+      veraison:
+        ipv4_address: ${VFE_VERAISON_ADDR}
+      demo:
+        ipv4_address: ${VFE_DEMO_ADDR}
+    container_name: vfe
+
+  pfe:
+    image: "veraison/provisioning"
+    volumes:
+      - ./logs:/opt/veraison/logs
+    networks:
+      veraison:
+        ipv4_address: ${PFE_VERAISON_ADDR}
+      demo:
+        ipv4_address: ${PFE_DEMO_ADDR}
+    container_name: pfe
+
+  relying-party:
+    build:
+      context: relying-party
+      dockerfile: relying-party.Dockerfile
+    stdin_open: true
+    tty: true
+    networks:
+      demo:
+    extra_hosts:
+      - "vfe:${VFE_DEMO_ADDR}"
+    container_name: relying-party
+
+#  attester:
+#   build:
+#     context: attester
+#     dockerfile: attester.Dockerfile
+#   stdin_open: true
+#   tty: true
+#   networks:
+#     demo:
+#   extra_hosts:
+#     - "pfe:${PFE_DEMO_ADDR}"
+#   container_name: relying-party
+
+networks:
+  veraison:
+    ipam:
+      config:
+        - subnet: "${VERAISON_SUBNET}"
+  demo:
+    ipam:
+      config:
+        - subnet: "${DEMO_SUBNET}"
