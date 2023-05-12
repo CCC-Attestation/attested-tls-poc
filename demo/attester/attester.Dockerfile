@@ -1,18 +1,15 @@
-FROM ubuntu:18.04
-
-# The specific version of libraries used in this Dockerfile should not change without having
-# carefully checked that this is not breaking stability.
-# See https://github.com/parallaxsecond/parsec/issues/397
-# and https://parallaxsecond.github.io/parsec-book/parsec_service/stability.html
+FROM ubuntu:20.04
 
 ENV PKG_CONFIG_PATH /usr/local/lib/pkgconfig
+ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt update
 RUN apt install -y autoconf-archive libcmocka0 libcmocka-dev procps
 RUN apt install -y iproute2 build-essential git pkg-config gcc libtool automake libssl-dev uthash-dev doxygen libjson-c-dev
 RUN apt install -y --fix-missing wget python3 cmake clang
 RUN apt install -y libini-config-dev libcurl4-openssl-dev curl libgcc1
-RUN apt install -y python3-distutils libclang-6.0-dev protobuf-compiler python3-pip
+RUN apt install -y python3-distutils libclang-12-dev protobuf-compiler python3-pip 
+RUN apt install -y openssl
 RUN pip3 install Jinja2
 RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
 WORKDIR /tmp
@@ -117,8 +114,24 @@ RUN cd mbedtls \
 	&& install -m 644 programs/ssl/ssl_client2 /usr/local/bin
 
 # Install Parsec tool
-RUN cargo install parsec-tool
+RUN git clone -b attested-tls https://github.com/ionut-arm/parsec-tool.git \
+	&& cd parsec-tool \
+	&& git checkout 45feaf20fcb0a886b2e20f4f19333b86608e215d \
+	&& cargo build --release \
+	&& cp target/release/parsec-tool /usr/bin/parsec-tool
 
-# Introduce run script
-COPY attest.sh /root/
+# Install Go toolchain
+RUN wget -c https://dl.google.com/go/go1.20.4.linux-amd64.tar.gz -O - | tar -xz -C /usr/local
+ENV PATH $PATH:/usr/local/go/bin:/root/go/bin
+
+# Install cocli
+RUN go install github.com/veraison/corim/cocli@latest
+
+# Introduce endorsement script
+COPY endorse.sh /root/
+
+# Introduced platform endorsement templates
+COPY comid-pcr.json /root/
+COPY corim.json /root/
+
 WORKDIR /root/
