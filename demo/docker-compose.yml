@@ -34,26 +34,15 @@ services:
   relying-party:
     build:
       context: relying-party
-      dockerfile: relying-party.Dockerfile
     stdin_open: true
     tty: true
     networks:
+      veraison:
       demo:
     extra_hosts:
       - "vfe:${VFE_DEMO_ADDR}"
+      - "pfe:${PFE_DEMO_ADDR}"
     container_name: relying-party
-
-#  attester:
-#   build:
-#     context: attester
-#     dockerfile: attester.Dockerfile
-#   stdin_open: true
-#   tty: true
-#   networks:
-#     demo:
-#   extra_hosts:
-#     - "pfe:${PFE_DEMO_ADDR}"
-#   container_name: relying-party
 
 networks:
   veraison:
