@@ -1,3 +1,4 @@
+# TODO(tho) clone and build
 
 VERAISON_ROOT := .veraison-services
 
