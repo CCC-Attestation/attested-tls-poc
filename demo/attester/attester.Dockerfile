@@ -1,5 +1,6 @@
 FROM ubuntu:20.04
 
+ARG TARGETARCH
 ENV PKG_CONFIG_PATH /usr/local/lib/pkgconfig
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -123,7 +124,7 @@ RUN git clone -b attested-tls https://github.com/ionut-arm/parsec-tool.git \
 	&& cp target/release/parsec-tool /usr/bin/parsec-tool
 
 # Install Go toolchain
-RUN wget -c https://dl.google.com/go/go1.20.4.linux-amd64.tar.gz -O - | tar -xz -C /usr/local
+RUN wget -c https://dl.google.com/go/go1.20.4.linux-$TARGETARCH.tar.gz -O - | tar -xz -C /usr/local
 ENV PATH $PATH:/usr/local/go/bin:/root/go/bin
 
 # Install cocli
