@@ -21,7 +21,7 @@ auth_type = "UnixPeerCredentials"
 [[key_manager]]
 name = "sqlite-manager"
 manager_type = "SQLite"
-sqlite_db_path = "./kim-mappings/sqlite/sqlite-key-info-manager.sqlite3"
+sqlite_db_path = "/root/state/kim-mappings/sqlite/sqlite-key-info-manager.sqlite3"
 
 [[provider]]
 provider_type = "Tpm"

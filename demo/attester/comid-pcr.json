@@ -1,0 +1,65 @@
+{
+    "tag-identity": {
+        "id": "99019224-57AA-44BC-BEF8-D36BDD6BD035"
+    },
+    "entities": [
+        {
+            "name": "Parsec",
+            "regid": "https://github.com/parallaxsecond",
+            "roles": [
+                "tagCreator",
+                "creator",
+                "maintainer"
+            ]
+        }
+    ],
+    "triples": {
+        "reference-values": [
+            {
+                "environment": {
+                    "class": {
+                        "id": {
+                            "type": "uuid",
+                            "value": "D10E4BD6-7E02-4D2C-BF1A-69AE22680478"
+                        }
+                    }
+                },
+                "measurements": [
+                    {
+                        "key": {
+                            "type": "uint",
+                            "value": 0
+                        },
+                        "value": {
+                            "digests": [
+                                "sha-256:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+                            ]
+                        }
+                    },
+                    {
+                        "key": {
+                            "type": "uint",
+                            "value": 1
+                        },
+                        "value": {
+                            "digests": [
+                                "sha-256:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+                            ]
+                        }
+                    },
+                    {
+                        "key": {
+                            "type": "uint",
+                            "value": 2
+                        },
+                        "value": {
+                            "digests": [
+                                "sha-256:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+                            ]
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

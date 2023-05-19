@@ -1,24 +1,26 @@
 #!/usr/bin/env bash
 
-set -xeuf -o pipefail
+set -xuf -o pipefail
 
-# Move to home directory
-cd ~/
+# Move to state directory
+pushd ~/state/
 
 # Start and initialize TPM server
 tpm_server &
-tpm2_startup -c -T mssim
+
+until tpm2_startup -c -T mssim; do
+    sleep 1
+done
 
 # TODO: Initialize PCRs with some data
 
 # Start Parsec service
 parsec -c /etc/parsec/config.toml &
 
-# Create key for TLS client
-# Note: this key is used by default by the mbedTLS client
-# For other use-cases, this specific key might not be needed.
-parsec-tool create-ecc-key -k parsec-se-driver-key2147483616
+until parsec-tool ping 2>&1 >/dev/null; do
+    sleep 1
+done
 
-# TODO: Create endorsement bundle
-# TODO: Endorse platform
-# TODO: Attest
+set -e
+
+ssl_client2 client_att_type=eat server_name=relaying-party server_port=4433
