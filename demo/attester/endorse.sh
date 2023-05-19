@@ -1,34 +1,6 @@
 #!/usr/bin/env bash
 
-set -xuf -o pipefail
-
-
-# Move to state directory
-pushd ~/state/
-
-# Start and initialize TPM server
-tpm_server &
-
-until tpm2_startup -c -T mssim; do
-    sleep 1
-done
-
-# TODO: Initialize PCRs with some data
-
-# Start Parsec service
-parsec -c /etc/parsec/config.toml &
-
-
-until parsec-tool ping 2>&1 >/dev/null; do
-    sleep 1
-done
-
-set -e
-
-# Create key for TLS client
-# Note: this key is used by default by the mbedTLS client
-# For other use-cases, this specific key might not be needed.
-parsec-tool create-ecc-key -k parsec-se-driver-key2147483616 || echo "TLS client key already found"
+set -xeuf -o pipefail
 
 # Create AIK endorsement
 mkdir -p endorsement/comid

@@ -35,6 +35,12 @@ show-logs:
 top:
 	$(DC) top
 
+endorse:
+	$(DC) exec attester /root/endorse.sh
+
+handshake:
+	$(DC) exec attester /root/handshake.sh
+
 help:
 	@echo "available targets:"
 	@echo
