@@ -43,17 +43,20 @@ services:
       - "vfe:${VFE_DEMO_ADDR}"
     container_name: relying-party
 
-#  attester:
-#   build:
-#     context: attester
-#     dockerfile: attester.Dockerfile
-#   stdin_open: true
-#   tty: true
-#   networks:
-#     demo:
-#   extra_hosts:
-#     - "pfe:${PFE_DEMO_ADDR}"
-#   container_name: relying-party
+  attester:
+    build:
+      context: attester
+      dockerfile: attester.Dockerfile
+    volumes:
+      - ./parsec-state:/root/state
+    stdin_open: true
+    tty: true
+    networks:
+      demo:
+    extra_hosts:
+      - "pfe:${PFE_DEMO_ADDR}"
+      - "relying-party:${RP_DEMO_ADDR}"
+    container_name: attester
 
 networks:
   veraison:

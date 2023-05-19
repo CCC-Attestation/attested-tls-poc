@@ -11,7 +11,8 @@ RUN apt install -y libini-config-dev libcurl4-openssl-dev curl libgcc1
 RUN apt install -y python3-distutils libclang-12-dev protobuf-compiler python3-pip 
 RUN apt install -y openssl
 RUN pip3 install Jinja2
-RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
+RUN apt-get -y install tzdata
+
 WORKDIR /tmp
 
 # Download and install TSS 2.0
