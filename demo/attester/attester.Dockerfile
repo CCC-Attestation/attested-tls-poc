@@ -111,7 +111,7 @@ RUN cd mbedtls \
 	&& git reset --hard HEAD \
 	&& git remote add ionut https://github.com/ionut-arm/mbedtls.git \
 	&& git fetch ionut parsec-attestation  \
-	&& git checkout parsec-attestation \
+	&& git checkout f4ac7593826a506fc509c83cad73786acab1d442 \
 	&& make CFLAGS="-DCTOKEN_LABEL_CNF=8 -DCTOKEN_TEMP_LABEL_KAK_PUB=2500" LDFLAGS="-lctoken -lt_cose -lqcbor -lm -lparsec_se_driver -lpthread -ldl" \
 	&& install -m 755 programs/ssl/ssl_client2 /usr/local/bin
 
@@ -131,10 +131,13 @@ RUN go install github.com/veraison/corim/cocli@latest
 
 # Introduce scripts
 COPY endorse.sh /root/
-COPY attest.sh /root/
+COPY handshake.sh /root/
+COPY start.sh /root/
 
 # Introduced platform endorsement templates
 COPY comid-pcr.json /root/
 COPY corim.json /root/
 
 WORKDIR /root/
+
+CMD /root/start.sh

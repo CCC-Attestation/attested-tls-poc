@@ -7,7 +7,7 @@ services:
       - ./logs:/opt/veraison/logs
     networks:
       veraison:
-    container_name: vts
+    container_name: vts-service
 
   vfe:
     image: "veraison/verification"
@@ -39,6 +39,7 @@ services:
     tty: true
     networks:
       demo:
+        ipv4_address: ${RP_DEMO_ADDR}
     extra_hosts:
       - "vfe:${VFE_DEMO_ADDR}"
     container_name: relying-party
@@ -47,12 +48,11 @@ services:
     build:
       context: attester
       dockerfile: attester.Dockerfile
-    volumes:
-      - ./parsec-state:/root/state
     stdin_open: true
     tty: true
     networks:
       demo:
+        ipv4_address: ${ATTESTER_DEMO_ADDR}
     extra_hosts:
       - "pfe:${PFE_DEMO_ADDR}"
       - "relying-party:${RP_DEMO_ADDR}"
