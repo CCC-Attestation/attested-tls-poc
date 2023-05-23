@@ -7,7 +7,8 @@ services:
       - ./logs:/opt/veraison/logs
     networks:
       veraison:
-    container_name: vts-service
+        ipv4_address: ${VTS_VERAISON_ADDR}
+    container_name: vts
 
   vfe:
     image: "veraison/verification"
@@ -18,6 +19,11 @@ services:
         ipv4_address: ${VFE_VERAISON_ADDR}
       demo:
         ipv4_address: ${VFE_DEMO_ADDR}
+    extra_hosts:
+      - "vts-service:${VTS_VERAISON_ADDR}"
+    depends_on:
+      vts:
+        condition: service_started
     container_name: vfe
 
   pfe:
@@ -29,6 +35,11 @@ services:
         ipv4_address: ${PFE_VERAISON_ADDR}
       demo:
         ipv4_address: ${PFE_DEMO_ADDR}
+    extra_hosts:
+      - "vts-service:${VTS_VERAISON_ADDR}"
+    depends_on:
+      vts:
+        condition: service_started
     container_name: pfe
 
   relying-party:
@@ -42,6 +53,9 @@ services:
         ipv4_address: ${RP_DEMO_ADDR}
     extra_hosts:
       - "vfe:${VFE_DEMO_ADDR}"
+    depends_on:
+      vfe:
+        condition: service_started
     container_name: relying-party
 
   attester:
@@ -56,6 +70,9 @@ services:
     extra_hosts:
       - "pfe:${PFE_DEMO_ADDR}"
       - "relying-party:${RP_DEMO_ADDR}"
+    depends_on:
+      pfe:
+        condition: service_started
     container_name: attester
 
 networks:
