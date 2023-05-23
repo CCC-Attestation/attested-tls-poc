@@ -35,10 +35,10 @@ show-logs:
 top:
 	$(DC) top
 
-endorse:
+endorse: start
 	$(DC) exec attester /root/endorse.sh
 
-handshake:
+handshake: start
 	$(DC) exec attester /root/handshake.sh
 
 help:
@@ -46,6 +46,8 @@ help:
 	@echo
 	@echo "  start      start the demo environment (containers, network, volumes, etc.)"
 	@echo "             do \"make BUILD=true start\" to force building the containers"
+	@echo "  endorse    collect keys and reference values from the attester and provision the verifier"
+	@echo "  handshake  run an attested TLS handshake and exchange minimal application data between attester and verifier"
 	@echo "  stop       tear down the demo environment"
 	@echo "  show-logs  show logs for all the containers"
 	@echo "  log-<node> show logs for the specific container"
