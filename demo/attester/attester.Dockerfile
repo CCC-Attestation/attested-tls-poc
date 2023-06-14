@@ -58,7 +58,7 @@ ENV PATH="/root/.cargo/bin:/opt/rust/bin:${PATH}"
 # Install Parsec service
 RUN git clone -b attested-tls https://github.com/ionut-arm/parsec.git \
 	&& cd parsec \
-	&& git checkout dc561a5e4dee998ded29c7bd3310429341ddf237 \
+	&& git checkout 1ac2060531b391ff1f335369dc4d1e4f17aee1aa \
 	&& cargo build --release --features=tpm-provider \
 	&& cp ./target/release/parsec /usr/bin/
 RUN mkdir /etc/parsec/

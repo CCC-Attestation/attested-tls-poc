@@ -65,8 +65,8 @@ The steps for verifying the attestation:
 - Verify that `kid` identifies an endorsed key.
 - Verify that the signing algorithm defined in `sig` is consistent with the key
    identified by `kid`.
-- Verify the `sig` is a valid signature over `certInfo` using the key identified
-   by `kid`.
+- Verify the `sig` is a valid signature over `attestInfo` using the key
+   identified by `kid`.
 - Verify that `attestInfo` is valid:
    - Verify that `magic` is set to TPM_GENERATED_VALUE.
    - Verify that `type` is set to TPM_ST_ATTEST_QUOTE.
