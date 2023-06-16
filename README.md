@@ -50,7 +50,7 @@ compromising on security has been a prime goal. Thus, we aim to cater to interac
 either the client, the server, or both can attest themselves, leveraging any hardware backend, and
 using different verification topologies.
 
-To showcase the standardization effort, we are also developing this open-source and end-to-end
+To showcase the standardization effort, we are also developing an open-source, end-to-end
 proof-of-concept implementation of one of the interaction models supported. The PoC builds on top of
 two Linux Foundation projects – [Parsec](https://parsec.community/) to abstract the root of trust
 attestation primitives, and [Veraison](https://github.com/veraison) to consume and verify the new
