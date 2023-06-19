@@ -47,7 +47,7 @@ cnf-map = {
 PAT contains a collection of tokens, which are individually signed. The PAT is
 also cryptographically linked to the Key Attestation Token (KAT) to provide the
 assurance needed for the origin of the application identity key. The linking
-MUST be performed by hashing the encoded KAT with the SHA256 algorithm, and
+MUST be performed by hashing the encoded KAT with the SHA512 algorithm, and
 using the resulting fingerprint as a challenge when obtaining the PAT.
 
 ## Verification procedure
@@ -61,7 +61,7 @@ The verification procedure is as follows:
    alternative sources.
 - Verify that the `kat` and `pat` are correctly linked together.
    - Extract the `kat` from the `parsecCcaAttestation` token.
-   - Hash the `kat` using the SHA256 algorithm.
+   - Hash the `kat` using the SHA512 algorithm.
    - Verify that the challenge claim (denoted `cca-realm-challenge` in the
       specification) included in the `pat` is equal to the fingerprint computed
       in the previous step.
