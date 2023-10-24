@@ -1,0 +1,40 @@
+logging:
+  level: info  # valid levels: error, warning, info, debug
+  output-paths:
+    - stdout
+    - logs/{{ .service }}-stdout.log
+provisioning:
+  listen-addr: 0.0.0.0:${PROVISIONING_PORT}
+verification:
+  listen-addr: 0.0.0.0:${VERIFICATION_PORT}
+management:
+  listen-addr: 0.0.0.0:${MANAGEMENT_PORT}
+vts:
+  server-addr: vts-service:${VTS_PORT}
+ear-signer:
+  alg: ES256
+  key: skey.jwk
+plugin:
+  backend: go-plugin
+  go-plugin:
+    dir: ./plugins/
+ta-store:
+  backend: sql
+  sql:
+    driver: sqlite3
+    datasource: stores/vts/ta-store.sql
+en-store:
+  backend: sql
+  sql:
+    driver: sqlite3
+    datasource: stores/vts/en-store.sql
+po-store:
+  backend: sql
+  sql:
+    driver: sqlite3
+    datasource: stores/vts/po-store.sql
+po-agent:
+    backend: opa
+auth:
+  backend: none
+# vim: set ft=yaml:
