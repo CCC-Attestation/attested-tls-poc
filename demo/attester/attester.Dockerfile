@@ -128,7 +128,7 @@ RUN wget -c https://dl.google.com/go/go1.20.4.linux-$TARGETARCH.tar.gz -O - | ta
 ENV PATH $PATH:/usr/local/go/bin:/root/go/bin
 
 # Install cocli
-RUN go install github.com/veraison/corim/cocli@v2.0.0-rc0
+RUN go install github.com/veraison/corim/cocli@rc0-v2.0.0
 
 # Introduce scripts
 COPY endorse.sh /root/
