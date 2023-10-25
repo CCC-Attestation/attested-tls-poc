@@ -3,7 +3,7 @@
 * Install [`cocli`](https://github.com/veraison/corim/cocli/README.md):
 
 ```shell
-go install github.com/veraison/corim/cocli@latest 
+go install github.com/veraison/corim/cocli@rc0-v2.0.0 
 ```
 
 * Create a folder to stash the CoMID intermediates:
