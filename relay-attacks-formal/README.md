@@ -104,7 +104,7 @@ For citing the corresponding repo with complete artifacts:
 ```
   Intra-handshake.fail-repo:
     title: "Intra-handshake.fail (CVE-2026-33697): High-severity CVE in Attested TLS"
-    date: June 2026,
+    date: July 2026,
     target: https://github.com/muhammad-usama-sardar/intra-handshake.fail
     author:
       - ins: M. U. Sardar
