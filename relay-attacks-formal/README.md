@@ -8,9 +8,9 @@
 
 ## Overview
 
-This repo contains the artifacts for formal specification and analysis of the attested TLS proof-of-concept in this repo. 
+This folder contains the artifacts for formal specification and analysis of the attested TLS proof-of-concept in this repo. 
 
-We identified seven candidate binding mechanisms for binding in intra-handshake attestation for standardization for attested TLS protocols:
+We identified seven candidate binding mechanisms for binding in **intra-handshake attestation** for standardization of attested TLS protocols:
 <!---
 TODO: Present as table: Binder # and Meaning
 --->
@@ -25,7 +25,7 @@ TODO: Present as table: Binder # and Meaning
 Attested TLS proof-of-concept in this repo uses mechanism #6.
 
 > [!NOTE]
-> We provide a proof of **insecurity** of attested TLS proof-of-concept using the state-of-the-art tool [ProVerif](https://ieeexplore.ieee.org/document/9833653).
+> We provide a proof of **insecurity** of attested TLS proof-of-concept implementation in this repo using the state-of-the-art tool [ProVerif](https://ieeexplore.ieee.org/document/9833653).
 
 ## Binding Levels
 1. DH shared secret
@@ -51,7 +51,7 @@ We consider TLS Server as RATS Attester, which is typical in confidential comput
 
 
 > [!NOTE]
-> Because of vulnerabilities, we very strongly recommend the developers and maintainers NOT to use this proof-of-concept.
+> Because of high-severity vulnerabilities, we very strongly recommend the developers and maintainers NOT to use this proof-of-concept.
  
 <!---
 #❓
@@ -67,7 +67,7 @@ Muhammad Usama Sardar, Viacheslav Dubeyko, and Jean-Marie Jacquet
 Preprint is available [here](https://www.researchgate.net/publication/408219182_Intra-handshakefail_CVE-2026-33697_High-severity_CVE_in_Attested_TLS).
 
 ## Scientific Publication
-The work is accepted for publication at ESORICS and should be cited as follows: 
+The formal analysis in this repo is part of the work accepted for publication at ESORICS and should be cited as follows: 
 
 > Muhammad Usama Sardar, Viacheslav Dubeyko, and Jean-Marie Jacquet. 2026.
 Intra-handshake.fail (CVE-2026-33697): High-severity CVE in Attested TLS.
@@ -90,7 +90,7 @@ For Internet-Drafts:
 ```
   Intra-handshake.fail:
     title: "Intra-handshake.fail (CVE-2026-33697): High-severity CVE in Attested TLS"
-    date: September 2026,
+    date: June 2026,
     target: https://www.researchgate.net/publication/408219182_Intra-handshakefail_CVE-2026-33697_High-severity_CVE_in_Attested_TLS
     author:
       - ins: M. U. Sardar
@@ -100,7 +100,7 @@ For Internet-Drafts:
 
 and then use as ``{{Intra-handshake.fail}}``
 
-For citing this repo:
+For citing the corresponding repo with complete artifacts:
 ```
   Intra-handshake.fail-repo:
     title: "Intra-handshake.fail (CVE-2026-33697): High-severity CVE in Attested TLS"
@@ -145,7 +145,7 @@ We also gratefully acknowledge the following who gave feedback on [previous stat
 - Jonathan Hoyland
 - Richard Barnes
 
-Several others at the IETF, IRTF, and CCC have contributed by providing feedback.
+Several others at the IETF, IRTF, CCC, and GA4GH have contributed by providing feedback.
 
 We sincerely thank Karthikeyan Bhargavan, Bruno Blanchet, and Nadim Kobeissi for the foundational formal model of draft 20 of TLS 1.3 in their [work](https://ieeexplore.ieee.org/document/7958594).
 
