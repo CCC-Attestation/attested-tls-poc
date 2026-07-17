@@ -14,8 +14,8 @@ This repository holds miscellaneous materials related to a proof-of-concept of t
 Attestation in Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS)" internet
 draft ([link](https://datatracker.ietf.org/doc/draft-fossati-tls-attestation/)).
 
-> [!NOTE]
-> Formal analysis has shown this to be vulnerable to relay attacks. Please do NOT use the proof-of-concept. See the folder `relay-attacks-formal` for artifacts.
+> [!CAUTION]
+> Formal analysis has shown the proof-of-concept implementation in this repo to be vulnerable to relay attacks. Please do NOT use this proof-of-concept. Please see the folder [`relay-attacks-formal`](./relay-attacks-formal) for ProVerif artifacts and the [corresponding paper](https://www.researchgate.net/publication/408219182_Intra-handshakefail_CVE-2026-33697_High-severity_CVE_in_Attested_TLS) for technical details.
 
 ## What's Here?
 
