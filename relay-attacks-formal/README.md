@@ -24,7 +24,7 @@ TODO: Present as table: Binder # and Meaning
 
 Attested TLS proof-of-concept in this repo uses mechanism #6.
 
-> [!NOTE]
+> [!CAUTION]
 > We provide a proof of **insecurity** of attested TLS proof-of-concept implementation in this repo using the state-of-the-art tool [ProVerif](https://ieeexplore.ieee.org/document/9833653).
 
 ## Binding Levels
@@ -50,7 +50,7 @@ We consider TLS Server as RATS Attester, which is typical in confidential comput
 | G3 : Correlation of Evidence to kc  | ❌     |
 
 
-> [!NOTE]
+> [!CAUTION]
 > Because of high-severity vulnerabilities, we very strongly recommend the developers and maintainers NOT to use this proof-of-concept.
  
 <!---
