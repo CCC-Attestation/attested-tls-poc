@@ -2,6 +2,7 @@
 
 This project consituted a starting point for research into enabling remote attestation support in the TLS 1.3 protocol.
 The system exhibited in this repository has not been (and will not be) kept up to date with the latest standardisation work on this topic.
+(The last commit on the implementation was in October 2023.)
 We advise against use of the design or implementation exhibited here.
 For the most recent designs and discussions, please check out the work of the [Secure Evidence and Attestation Transport (SEAT) Working Group](https://datatracker.ietf.org/group/seat/about/) in IETF.
 
